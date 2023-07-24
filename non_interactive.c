@@ -5,11 +5,11 @@ void non_interactive(sh_data *shell)
 	char *path;
 	size_t n = 0;
 	ssize_t nread;
-	int built_r, process = 0;
+	int built_r;
 
 	while (1)
 	{
-		process++;
+		shell->process++;
 		nread = getline(&shell->line, &n, stdin);
 		if (nread == -1)
 		{
@@ -42,7 +42,7 @@ void non_interactive(sh_data *shell)
 		}
 		else
 		{
-			dprintf(STDERR_FILENO, "%s: %d: %s: not found\n", shell->name, process, *shell->tokens);
+			dprintf(STDERR_FILENO, "%s: %d: %s: not found\n", shell->name, shell->process, *shell->tokens);
 			shell->status = EX_NOTFOUND;
 		}
 

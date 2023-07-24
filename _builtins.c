@@ -22,28 +22,29 @@ int builtins(sh_data *shell)
 	return (0);
 }
 
+
 int shell_exit(sh_data *shell)
 {
-	int arg;
+        int arg;
 
-	if (shell->tokens[1])
-	{
-		arg = atoi(shell->tokens[1]);
-		if (arg <= 0)
-		{
-			dprintf(2, "misuse of exit\n");
-			free_array(shell->tokens);
-			free(shell->line);
-			exit(MISUSAGE);
-		}
-		free_array(shell->tokens);
-		free(shell->line);
-		exit(arg);
-	}
-	free_array(shell->tokens);
-	free(shell->line);
-	exit(EXIT_SUCCESS);
-	return (1);
+        if (shell->tokens[1])
+        {
+                arg = atoi(shell->tokens[1]);
+                if (arg <= 0)
+                {
+                        dprintf(2, "%s: %d: exit: Illegal number: %s\n", shell->name, shell->process, shell->tokens[1]);
+                        free_array(shell->tokens);
+                        free(shell->line);
+                        exit(MISUSAGE);
+                }
+                free_array(shell->tokens);
+                free(shell->line);
+                exit(arg);
+        }
+        free_array(shell->tokens);
+        free(shell->line);
+        exit(EXIT_SUCCESS);
+        return (1);
 }
 
 int print_env(sh_data *shell)

@@ -5,6 +5,7 @@ int main(int ac, char **av)
 	sh_data shell;
 	(void)ac;
 
+	shell.process = 0;
 	shell.status = 0;
 	shell.name = *av;
 	shell.line = NULL;
