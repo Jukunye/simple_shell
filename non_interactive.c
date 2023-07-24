@@ -1,4 +1,4 @@
-#include "_shell.h"
+#include "shell.h"
 
 void non_interactive(sh_data *shell)
 {

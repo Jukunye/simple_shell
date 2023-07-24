@@ -1,4 +1,4 @@
-#include "_shell.h"
+#include "shell.h"
 
 char *find_path(char *cmd)
 {
