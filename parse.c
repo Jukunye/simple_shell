@@ -6,7 +6,7 @@ int calc_tokens(char *line)
 	int counter = 0;
 	char *token, *line_copy;
 
-	line_copy = strdup(line);
+	line_copy = _strdup(line);
 	if (line_copy == NULL)
 		return (-1);
 
@@ -28,7 +28,7 @@ char **tokenize(char *line)
 	int i = 0, num_token;
 	char *line_copy, *token;
 
-	line_copy = strdup(line);
+	line_copy = _strdup(line);
 	if (line_copy == NULL)
 		return (NULL);
 
@@ -43,7 +43,7 @@ char **tokenize(char *line)
 	token = strtok(line_copy, delim);
 	while (token != NULL)
 	{
-		arr_t[i] = strdup(token);
+		arr_t[i] = _strdup(token);
 		token = strtok(NULL, delim);
 		i++;
 	}

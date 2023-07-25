@@ -11,7 +11,7 @@ int builtins(sh_data *shell)
 
 	while (built_s[i].builtin)
 	{
-		if (strcmp(built_s[i].builtin, *shell->tokens) == 0)
+		if (_strcmp(built_s[i].builtin, *shell->tokens) == 0)
 		{
 			built_r = (*built_s[i].fun_p)(shell);
 			return (built_r);
@@ -29,7 +29,7 @@ int shell_exit(sh_data *shell)
 
         if (shell->tokens[1])
         {
-                arg = atoi(shell->tokens[1]);
+                arg = _atoi(shell->tokens[1]);
                 if (arg <= 0)
                 {
                         dprintf(2, "%s: %d: exit: Illegal number: %s\n", shell->name, shell->process, shell->tokens[1]);

@@ -13,7 +13,7 @@ void interactive(sh_data *shell)
 
 		write(1, "$ ", 2);
 
-		nread = getline(&shell->line, &n, stdin);
+		nread = _getline(&shell->line, &n, stdin);
 		if (nread == -1)
 		{
 			perror("reading input");
@@ -34,10 +34,10 @@ void interactive(sh_data *shell)
 
 		if (path != NULL)
 		{
-			if (strcmp(path, *shell->tokens) != 0)
+			if (_strcmp(path, *shell->tokens) != 0)
 			{
 				free(*shell->tokens);
-				*shell->tokens = strdup(path);
+				*shell->tokens = _strdup(path);
 				free(path);
 			}
 			shell->status = execCmd(shell);

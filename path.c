@@ -11,17 +11,17 @@ char *find_path(char *cmd)
 	if (pathcp == NULL)
 		return (NULL);
 
-	path = strdup(pathcp);
+	path = _strdup(pathcp);
 
 	temp = strtok(path, ":");
 
 	while (temp != NULL)
 	{
-		dir = malloc(strlen(temp) + strlen(cmd) + 2);
+		dir = malloc(_strlen(temp) + _strlen(cmd) + 2);
 
-		dir = strcpy(dir, temp);
-		dir = strcat(dir, "/");
-		dir = strcat(dir, cmd);
+		dir = _strcpy(dir, temp);
+		dir = _strcat(dir, "/");
+		dir = _strcat(dir, cmd);
 
 		if (stat(dir, &st) == 0)
 		{
