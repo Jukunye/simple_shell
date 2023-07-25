@@ -9,10 +9,10 @@ void non_interactive(sh_data *shell)
 {
 	char *path;
 	size_t n = 0;
-	ssize_t nread;
+	/*ssize_t nread;*/
 	int built_r;
 
-	while ((nread = _getline(&shell->line, &n, stdin)) != -1)
+	while (getline(&shell->line, &n, stdin) != -1)
 	{
 		shell->process++;
 
