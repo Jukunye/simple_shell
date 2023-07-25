@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * interactive - Run the shell in interactive mode.
+ * @shell: A pointer to the shell data structure.
+ *
+ * Return: Void
+ */
+
 void interactive(sh_data *shell)
 {
 	char *path;
