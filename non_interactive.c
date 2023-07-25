@@ -12,7 +12,7 @@ void non_interactive(sh_data *shell)
 	/*ssize_t nread;*/
 	int built_r;
 
-	while (getline(&shell->line, &n, stdin) != -1)
+	while (_getline(&shell->line, &n, stdin) != -1)
 	{
 		shell->process++;
 
