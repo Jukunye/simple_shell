@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * find_path - finds a pathname for an executable
+ * @cmd: executable command
+ * Return: pathname.
+ */
 char *find_path(char *cmd)
 {
 	char *path, *pathcp, *dir, *temp;

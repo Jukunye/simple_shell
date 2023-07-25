@@ -21,20 +21,38 @@
 
 extern char **environ;
 
-
-typedef struct shell_data {
+/**
+ * struct shell_data - contains all most used variables for the shell
+ * @name: name of the program
+ * @process: counts the process
+ * @status: exit status of the program
+ * @tokens: tokenized string
+ * @line: pointer input string
+ *
+ * Description: struct data
+ */
+typedef struct shell_data
+{
 	char *name;
 	int process;
 	int status;
 	char **tokens;
 	char *line;
 } sh_data;
-
-typedef struct builtin_s {
+/**
+ * struct builtin_s - buit in functions struct
+ * @builtin: builtin function string
+ * @fun_p: function pointer
+ *
+ * Description: struct data
+ */
+typedef struct builtin_s
+{
 	char *builtin;
 	int (*fun_p)(sh_data *);
 } builtin_f;
 
+/*Prototypes*/
 void interactive(sh_data *shell);
 void non_interactive(sh_data *shell);
 void removeNewline(char *str);

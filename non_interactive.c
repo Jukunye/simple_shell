@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * non_interactive - handles the shell when the terminal is not used
+ * @shell: pointer to shell struct
+ * Return: nothing
+ */
 void non_interactive(sh_data *shell)
 {
 	char *path;
@@ -7,16 +12,9 @@ void non_interactive(sh_data *shell)
 	ssize_t nread;
 	int built_r;
 
-	while (1)
+	while ((nread = _getline(&shell->line, &n, stdin)) != -1)
 	{
 		shell->process++;
-		nread = _getline(&shell->line, &n, stdin);
-		if (nread == -1)
-		{
-			/*perror("reading input");*/
-			/*exit(EXIT_FAILURE);*/
-			break;
-		}
 
 		removeNewline(shell->line);
 
@@ -29,7 +27,6 @@ void non_interactive(sh_data *shell)
 			continue;
 
 		path = find_path(*shell->tokens);
-
 		if (path != NULL)
 		{
 			if (_strcmp(path, *shell->tokens) != 0)
@@ -42,10 +39,10 @@ void non_interactive(sh_data *shell)
 		}
 		else
 		{
-			dprintf(STDERR_FILENO, "%s: %d: %s: not found\n", shell->name, shell->process, *shell->tokens);
+			dprintf(STDERR_FILENO, "%s: %d: %s: not found\n"
+					, shell->name, shell->process, *shell->tokens);
 			shell->status = EX_NOTFOUND;
 		}
-
 		free_array(shell->tokens);
 	}
 	free(shell->line);

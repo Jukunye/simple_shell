@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * calc_tokens - finds the number of tokens
+ * @line: pointer to line string
+ * Return: number of tokens
+ */
 int calc_tokens(char *line)
 {
 	const char *delim = " \t\a\r\n";
@@ -21,6 +26,11 @@ int calc_tokens(char *line)
 	return (counter);
 }
 
+/**
+ * tokenize - parses the line string into an array of string pointers
+ * @line: pointer to  line string
+ * Return: tokenized string
+ */
 char **tokenize(char *line)
 {
 	const char *delim = " \t\a\r\n";
