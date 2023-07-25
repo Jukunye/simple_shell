@@ -9,22 +9,22 @@
  */
 char *_getenv(const char *name)
 {
-     char **env = environ;
+	char **env = environ;
 
-    if (name == NULL || *name == '\0')
-        return (NULL);
+	if (name == NULL || *name == '\0')
+		return (NULL);
 
-    while (*env)
-    {
-        if (_strcmp(*env, name) == 0)
-        {
-            char *value = *env;
-            value += _strlen(name) + 1; /* Skip the variable name and '=' */
-            return value;
-        }
+	while (*env)
+	{
+		if (_strcmp(*env, name) == 0)
+		{
+			char *value = *env;
 
-        env++;
-    }
+			value += _strlen(name) + 1; /* Skip the variable name and '=' */
+			return (value);
+		}
 
-    return (NULL);
+		env++;
+	}
+	return (NULL);
 }

@@ -1,5 +1,15 @@
 #include "shell.h"
 
+/**
+ *  execCmd - Execute a command by forking
+ *  a child process and calling execve.
+ *  @shell: A pointer to the shell data struct.
+ *
+ *  Return: The exit status of the child process
+ *  or an error status if the fork
+ *  or execve failed.
+ */
+
 int execCmd(sh_data *shell)
 {
 	pid_t pid;

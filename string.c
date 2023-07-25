@@ -9,12 +9,14 @@
  *         Positive if str1 > str2,
  *         0 if str1 is = str2.
  */
-int _strcmp(const char *str1, const char *str2) {
-    while (*str1 && (*str1 == *str2)) {
-        str1++;
-        str2++;
-    }
-    return (unsigned char)(*str1) - (unsigned char)(*str2);
+int _strcmp(const char *str1, const char *str2)
+{
+	while (*str1 && (*str1 == *str2))
+	{
+		str1++;
+		str2++;
+	}
+	return ((unsigned char)(*str1) - (unsigned char)(*str2));
 }
 
 /**
@@ -23,12 +25,15 @@ int _strcmp(const char *str1, const char *str2) {
  *
  * Return: The length of the string (excluding the null terminator).
  */
-size_t _strlen(const char *str) {
-    size_t len = 0;
-    while (str[len] != '\0') {
-        len++;
-    }
-    return (len);
+size_t _strlen(const char *str)
+{
+	size_t len = 0;
+
+	while (str[len] != '\0')
+	{
+		len++;
+	}
+	return (len);
 }
 
 /**
@@ -40,21 +45,22 @@ size_t _strlen(const char *str) {
  */
 char *_strdup(const char *src)
 {
-    char *dest;
-    size_t len = 0;
-    size_t i;
+	char *dest;
+	size_t len = 0;
+	size_t i;
 
-    while (src[len])
-        len++;
+	while (src[len])
+		len++;
 
-    dest = malloc((len + 1) * sizeof(char));
-    if (dest == NULL)
-        return NULL;
+	dest = malloc((len + 1) * sizeof(char));
 
-    for (i = 0; i <= len; i++)
-        dest[i] = src[i];
+	if (dest == NULL)
+		return (NULL);
 
-    return (dest);
+	for (i = 0; i <= len; i++)
+		dest[i] = src[i];
+
+	return (dest);
 }
 
 /**
@@ -64,17 +70,19 @@ char *_strdup(const char *src)
  *
  * Return: A pointer to the destination buffer.
  */
-char *_strcpy(char *dest, const char *src) {
-    char *dest_start = dest;
+char *_strcpy(char *dest, const char *src)
+{
+	char *dest_start = dest;
 
-    while (*src) {
-        *dest = *src;
-        dest++;
-        src++;
-    }
-    *dest = '\0';
+	while (*src)
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
 
-    return (dest_start);
+	return (dest_start);
 }
 
 /**
@@ -86,19 +94,18 @@ char *_strcpy(char *dest, const char *src) {
  */
 char *_strcat(char *dest, const char *src)
 {
-    char *temp = dest;
+	char *temp = dest;
 
-    while (*dest)
-        dest++;
+	while (*dest)
+		dest++;
 
-    while (*src)
-    {
-        *dest = *src;
-        dest++;
-        src++;
-    }
+	while (*src)
+	{
+		*dest = *src;
+		dest++;
+		src++;
+	}
+	*dest = '\0'; /* Null-terminate the concatenated string*/
 
-    *dest = '\0'; /* Null-terminate the concatenated string*/
-
-    return (temp);
+	return (temp);
 }
