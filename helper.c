@@ -4,7 +4,7 @@ void removeNewline(char *str)
 {
 	int len;
 
-	len = strlen(str);
+	len = _strlen(str);
 
 	if (len > 0 && str[len - 1] == '\n')
 		str[len - 1] = '\0';

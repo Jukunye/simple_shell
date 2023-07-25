@@ -10,7 +10,7 @@ void non_interactive(sh_data *shell)
 	while (1)
 	{
 		shell->process++;
-		nread = getline(&shell->line, &n, stdin);
+		nread = _getline(&shell->line, &n, stdin);
 		if (nread == -1)
 		{
 			/*perror("reading input");*/
@@ -32,7 +32,7 @@ void non_interactive(sh_data *shell)
 
 		if (path != NULL)
 		{
-			if (strcmp(path, *shell->tokens) != 0)
+			if (_strcmp(path, *shell->tokens) != 0)
 			{
 				free(*shell->tokens);
 				*shell->tokens = strdup(path);
