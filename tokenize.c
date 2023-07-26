@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * calc_tokens - finds the number of tokens
+ * count_tokens - finds the number of tokens
  * @line: pointer to line string
  * Return: number of tokens
  */
