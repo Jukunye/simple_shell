@@ -79,7 +79,9 @@ int _atoi(char *s);
 char *_getenv(const char *name);
 
 /*_getline.c*/
-ssize_t refillBuffer(FILE *stream, char buf[], size_t *buf_index, ssize_t *bytes_remaining);
+void *_memcpy(void *dest, const void *src, size_t n);
+ssize_t refillBuffer(FILE *stream, char buf[],
+		size_t *buf_index, ssize_t *bytes_remaining);
 char *resizeLineBuffer(char *lineptr, size_t *n, ssize_t bytes_read);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 

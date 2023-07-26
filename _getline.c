@@ -13,7 +13,7 @@ void *_memcpy(void *dest, const void *src, size_t n)
 {
 	char *csrc = (char *)src;
 	char *cdest = (char *)dest;
-  size_t i;
+	size_t i;
 
 	for (i = 0; i < n; i++)
 		cdest[i] = csrc[i];
@@ -77,50 +77,44 @@ char *resizeLineBuffer(char *lineptr, size_t *n, ssize_t bytes_read)
 
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
-    static char buf[BUFFER_SIZE];
-    static size_t buf_index;
-    static ssize_t bytes_remaining;
-    ssize_t bytes_read = 0;
+	static char buf[BUFFER_SIZE];
+	static size_t buf_index;
+	static ssize_t bytes_remaining;
+	ssize_t bytes_read = 0;
 
-    if (*lineptr == NULL || *n == 0)
-    {
-        *n = BUFFER_SIZE;
-        *lineptr = malloc(*n);
+	if (*lineptr == NULL || *n == 0)
+	{
+		*n = BUFFER_SIZE;
+		*lineptr = malloc(*n);
 
-        if (*lineptr == NULL)
-        {
-            perror("malloc failed");
-            return (-1);
-        }
-    }
-
-    while (1)
-    {
-        if ((ssize_t)buf_index >= bytes_remaining)
-        {
-            if (refillBuffer(stream, buf, &buf_index, &bytes_remaining) <= 0)
-            {
-                return (bytes_read == 0 ? -1 : bytes_read);
-            }
-        }
-
-        (*lineptr)[bytes_read] = buf[buf_index];
-        bytes_read++;
-        buf_index++;
+		if (*lineptr == NULL)
+		{
+			perror("malloc failed");
+			return (-1);
+		}
+	}
+	while (1)
+	{
+		if ((ssize_t)buf_index >= bytes_remaining)
+		{
+			if (refillBuffer(stream, buf, &buf_index, &bytes_remaining) <= 0)
+				return (bytes_read == 0 ? -1 : bytes_read);
+		}
+	(*lineptr)[bytes_read] = buf[buf_index];
+	bytes_read++;
+	buf_index++;
 
 	if ((*lineptr)[bytes_read - 1] == '\n')
-        {
-            (*lineptr)[bytes_read] = '\0';
-            return bytes_read;
-        }
-
-        if ((size_t)bytes_read == *n)
-        {
-            *lineptr = resizeLineBuffer(*lineptr, n, bytes_read);
-
-            if (*lineptr == NULL)
-                return (-1);
-        }
-    }
-    return (-1);
+	{
+		(*lineptr)[bytes_read] = '\0';
+		return (bytes_read);
+	}
+	if ((size_t)bytes_read == *n)
+	{
+		*lineptr = resizeLineBuffer(*lineptr, n, bytes_read);
+		if (*lineptr == NULL)
+			return (-1);
+	}
+	}
+	return (-1);
 }
