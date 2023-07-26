@@ -60,9 +60,10 @@ void non_interactive(sh_data *shell);
 void removeNewline(char *str);
 char *find_path(char *cmd);
 int execCmd(sh_data *shell);
-int calc_tokens(char *lineptr);
-char **tokenize(char *lineptr);
+char **tokenize(char *line);
 void free_array(char **ptr);
+
+void remove_comment(char *line);
 
 /*_builtins.c*/
 int builtins(sh_data *shell);

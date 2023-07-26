@@ -17,7 +17,7 @@ void non_interactive(sh_data *shell)
 		shell->process++;
 
 		removeNewline(shell->line);
-
+		remove_comment(shell->line);
 		shell->tokens = tokenize(shell->line);
 		if (shell->tokens == NULL)
 			continue;

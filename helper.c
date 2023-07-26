@@ -34,3 +34,25 @@ void free_array(char **ptr)
 		ptr = NULL;
 	}
 }
+
+/**
+ * remove_comment - ignores everything after a '#' char
+ * @line: pointer to line string
+ *
+ * Return: nothing
+ */
+void remove_comment(char *line)
+{
+	int i = 0;
+
+	if (*line == '#')
+		*line = '\0';
+
+	while (line[i] != '\0')
+	{
+		if (line[i] == '#' && line[i - 1] == ' ')
+			break;
+		i++;
+	}
+	line[i] = '\0';
+}
