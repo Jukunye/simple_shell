@@ -81,6 +81,8 @@ char *_strcat(char *dest, const char *src);
 int _atoi(char *s);
 
 /*enviroment.c*/
+int setenv_command(sh_data *shell);
+int unsetenv_command(sh_data *shell);
 char *_getenv(const char *name);
 
 /*_getline.c*/

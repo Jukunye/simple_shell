@@ -16,6 +16,8 @@ int builtins(sh_data *shell)
 		{"exit", &shell_exit},
 		{"env", &print_env},
 		{"cd", &change_directory},
+		{"setenv", &setenv_command},
+		{"unsetenv", &unsetenv_command},
 		{NULL, NULL}
 	};
 
