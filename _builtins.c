@@ -15,6 +15,7 @@ int builtins(sh_data *shell)
 	builtin_f built_s[] = {
 		{"exit", &shell_exit},
 		{"env", &print_env},
+		{"cd", &change_directory},
 		{NULL, NULL}
 	};
 
@@ -81,5 +82,55 @@ int print_env(sh_data *shell)
 
 	free_array(shell->tokens);
 
+	return (1);
+}
+
+/**
+ * change_directory - Builtin function to change the current directory.
+ * @shell: Pointer to the shell data structure.
+ *
+ * Return: Always returns 1.
+ */
+int change_directory(sh_data *shell)
+{
+	if (shell->tokens[1] == NULL)
+	{
+		char *home_path = getenv("HOME");
+
+		if (home_path != NULL)
+		{
+			chdir(home_path);
+			setenv("PWD", home_path, 1);
+
+			fprintf(stderr, "Home directory not set.\n");
+		}
+	} else if (_strcmp(shell->tokens[1], "-") == 0)
+	{
+		char *previous_path = _getenv("OLDPWD");
+
+		if (previous_path != NULL)
+		{
+			chdir(previous_path);
+			setenv("PWD", previous_path, 1);
+
+			fprintf(stderr, "Previous directory not set.\n");
+		}
+	} else
+	{
+		char current_path[1024];
+
+		if (getcwd(current_path, sizeof(current_path)) != NULL)
+		{
+			if (chdir(shell->tokens[1]) == 0)
+			{
+				setenv("OLDPWD", current_path, 1);
+				setenv("PWD", shell->tokens[1], 1);
+
+				perror("cd");
+			}
+		} else
+			perror("getcwd");
+	}
+	free_array(shell->tokens);
 	return (1);
 }

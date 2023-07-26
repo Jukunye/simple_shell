@@ -18,6 +18,8 @@
 #define MISUSAGE	2
 #define EX_BADUSAGE	2
 #define EX_NOTFOUND	127
+#define EX_CMDFAIL 2
+#define EX_SUCCESS 0
 
 extern char **environ;
 
@@ -61,9 +63,12 @@ int execCmd(sh_data *shell);
 int calc_tokens(char *lineptr);
 char **tokenize(char *lineptr);
 void free_array(char **ptr);
+
+/*_builtins.c*/
 int builtins(sh_data *shell);
 int shell_exit(sh_data *shell);
 int print_env(sh_data *shell);
+int change_directory(sh_data *shell);
 
 /*string.c*/
 int _strcmp(const char *str1, const char *str2);
